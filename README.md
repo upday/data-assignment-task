@@ -13,7 +13,7 @@ The scope of this task is build everything that is between raw data and BI table
 ## Assignment
 The BI teams requires 2 tables:
 * article_performance: the table should allow them to calculate the following statistics for each article (id):
-  * daily clicks per day
+  * daily clicks
   * cumulative sum of click throughout the days
   * click through rate per day (clicks over displays)
 * user_performance: the table should allow them to calculate user-based statistics for each user:
@@ -22,6 +22,7 @@ The BI teams requires 2 tables:
   
 The event triggered when a user reads (clicks) an article is named `article_viewed`. 
 The events triggered when a user swipes  an article are named  `top_news_card_viewed` or `my_news_card_viewed`, depending on which section of the app the user was using.
+You can find the article ids inside the `attributes` field, under `id`.
 
 The data is available at https://s3.console.aws.amazon.com/s3/buckets/upday-data-assignment/lake/
 The bucket contains raw event data from our app.

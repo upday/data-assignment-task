@@ -1,0 +1,17 @@
+version: '3'
+services:
+   etl:
+      build: .
+      depends_on:
+         - postgres
+      links:
+         - postgres
+   postgres:
+      image: postgres:11
+      restart: always
+      ports:
+         - 5432:5432
+      environment:
+         POSTGRES_USER: user
+         POSTGRES_PASSWORD: password
+         POSTGRES_DB: database

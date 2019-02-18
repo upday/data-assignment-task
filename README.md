@@ -21,7 +21,7 @@ The BI teams requires 2 tables:
   * daily click through rate
   
 The event triggered when a user reads (clicks) an article is named `article_viewed`. 
-The events triggered when a user swipes  an article are named  `top_news_card_viewed` or `my_news_card_viewed`, depending on which section of the app the user was using.
+The events triggered when a user swipes (displays) an article are named  `top_news_card_viewed` or `my_news_card_viewed`, depending on which section of the app the user was using.
 You can find the article ids inside the `attributes` field, under `id`.
 
 The data is available at https://s3.console.aws.amazon.com/s3/buckets/upday-data-assignment/lake/

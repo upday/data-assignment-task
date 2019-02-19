@@ -33,6 +33,7 @@ The candidate should make a pull request to this repository containing his/her s
 What we expect:
 * The code implementing the ETL logic, triggered from the `run.py` script
 * Extension of the currently existing `Dockerfile` (only if needed)
+* Tests, with instructions on how to run them
 
 Some more details:
 * The docker compose file will create a Postgres container already connected to the ETL container. That Postgres instance should be used for storing data models and solution.

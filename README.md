@@ -29,10 +29,13 @@ The bucket contains raw event data from our app.
 
 ## Instructions
 The candidate should make a pull request to this repository containing his/her solution.
+
 What we expect:
-* The code implementing the ETL logic
-* A Dockerfile (you should complete the existing one) that we can use to build and run the logic
-* The docker compose file will create a Postgres container already connected to the ETL container. Please use that postgres instance for storing your model and solution.
+* The code implementing the ETL logic, triggered from the `run.py` script
+* Extension of the currently existing `Dockerfile` (only if needed)
+
+Some more details:
+* The docker compose file will create a Postgres container already connected to the ETL container. That Postgres instance should be used for storing data models and solution.
 * The task reviewer will only run `docker-compose up` and wait for the container to exit, 
 * After the command prints `data-assignment-task_etl_1 exited with code 0`, the database is expected to be in its final state, with the solution to the task.
 

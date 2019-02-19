@@ -33,4 +33,10 @@ What we expect:
 * The code implementing the ETL logic
 * A Dockerfile (you should complete the existing one) that we can use to build and run the logic
 * The docker compose file will create a Postgres container already connected to the ETL container. Please use that postgres instance for storing your model and solution.
-* Once the docker container is run, the reviewer should be able to inspect the Postgres Database to verify the correctness of the aggregated table.
+* The task reviewer will only run `docker-compose up` and wait for the container to exit (`data-assignment-task_etl_1 exited with code 0`). After that, the reviewer will inspect the Postgres Database to verify the correctness of the aggregated tables.
+
+The task will be evaluated based on:
+* Correctness of the final result
+* Readability of the code
+* Architecture of the solution
+* Tests (full coverage is not  required, the candidate should mainly test the critical parts of the code)

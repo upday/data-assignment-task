@@ -29,7 +29,7 @@ The data is available at https://s3.console.aws.amazon.com/s3/buckets/upday-data
 The bucket contains raw event data from our app.
 
 ## Instructions
-You should make a pull request to this repository containing the solution.
+You should make a pull request to this repository containing the solution. If you need to clarify any point of your solution, please include an explanation in the PR description.
 
 What we expect:
 * The code implementing the ETL logic, triggered from the `run.py` script

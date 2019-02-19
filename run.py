@@ -1,20 +1,26 @@
-import psycopg2
-from time import sleep
+def extract():
+    from etl.Extractor import Extractor
+    return Extractor('upday-data-assignment', 'lake/').load_s3_oject_as_df()
 
-sleep(10)
-try:
-    # Just some sample code.
-    with psycopg2.connect(user='user',
-                          password='password',
-                          host='postgres',
-                          database='database') as connection:
-        cursor = connection.cursor()
-        # Print PostgreSQL Connection properties
-        print(connection.get_dsn_parameters(), '\n')
-        
-        # Print PostgreSQL version
-        cursor.execute('SELECT version();')
-        record = cursor.fetchone()
-        print('You are connected to - ', record, '\n')
-except (Exception, psycopg2.Error) as error:
-    print('Error while connecting to PostgreSQL', error)
+
+def transform(df):
+    from etl.Transformer import Transformer
+    result = Transformer(df).transform()
+    Transformer.PersistHelper(result, 'results').save_df_to_filesystem()
+
+
+def load():
+    from etl.Loader import Loader
+    Loader().load_data_to_postgres()
+
+
+if __name__ == '__main__':
+    import time
+    from etl.Initializer import create_load_tables
+
+    time.sleep(15)
+
+    create_load_tables()
+    df = extract()
+    transform(df)
+    load()

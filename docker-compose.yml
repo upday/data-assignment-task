@@ -1,17 +1,23 @@
 version: '3'
 services:
-   etl:
-      build: .
-      depends_on:
-         - postgres
-      links:
-         - postgres
-   postgres:
-      image: postgres:11
-      restart: always
-      ports:
-         - 5432:5432
-      environment:
-         POSTGRES_USER: user
-         POSTGRES_PASSWORD: password
-         POSTGRES_DB: database
+  postgres:
+    image: postgres:11
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+  etl:
+    build: .
+    depends_on:
+      - "postgres"
+    links:
+      - "postgres"
+    environment:
+      DB_USER: user
+      DB_PASSWORD: password
+      DATABASE: database
+      DB_HOST: postgres
+      DB_PORT: 5432

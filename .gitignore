@@ -1,0 +1,7 @@
+.idea/
+.ipynb_checkpoints/
+venv/
+*.ipynb
+data-assignment-task/
+__pycache__/
+results/

@@ -33,7 +33,8 @@ What we expect:
 * The code implementing the ETL logic
 * A Dockerfile (you should complete the existing one) that we can use to build and run the logic
 * The docker compose file will create a Postgres container already connected to the ETL container. Please use that postgres instance for storing your model and solution.
-* The task reviewer will only run `docker-compose up` and wait for the container to exit (`data-assignment-task_etl_1 exited with code 0`). After that, the reviewer will inspect the Postgres Database to verify the correctness of the aggregated tables.
+* The task reviewer will only run `docker-compose up` and wait for the container to exit, 
+* After the command prints `data-assignment-task_etl_1 exited with code 0`, the database is expected to be in its final state, with the solution to the task.
 
 The task will be evaluated based on:
 * Correctness of the final result

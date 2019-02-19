@@ -3,6 +3,7 @@ from time import sleep
 
 sleep(10)
 try:
+    # Just some sample code.
     with psycopg2.connect(user='user',
                           password='password',
                           host='postgres',
@@ -10,6 +11,7 @@ try:
         cursor = connection.cursor()
         # Print PostgreSQL Connection properties
         print(connection.get_dsn_parameters(), '\n')
+        
         # Print PostgreSQL version
         cursor.execute('SELECT version();')
         record = cursor.fetchone()

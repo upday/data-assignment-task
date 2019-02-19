@@ -45,3 +45,6 @@ The task will be evaluated based on:
 * Readability of the code
 * Architecture of the solution
 * Tests (full coverage is not  required, the candidate should mainly test the critical parts of the code)
+
+## Bonus
+Include a picture that visualizes the CTR per article category over the 3 days. Up to the candidate which kind of visualization to use.

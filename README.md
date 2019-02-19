@@ -45,6 +45,7 @@ The task will be evaluated based on:
 * Correctness of the final result
 * Readability of the code
 * Architecture of the solution
+* Data modeling
 * Tests (full coverage is not required, you should mainly test the critical parts of the code)
 
 ## Bonus

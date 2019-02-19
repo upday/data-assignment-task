@@ -25,6 +25,7 @@ The events triggered when a user swipes (displays) an article are named  `top_ne
 You can find the article ids inside the `attributes` field, under `id`.
 
 The data is available at https://s3.console.aws.amazon.com/s3/buckets/upday-data-assignment/lake/
+
 The bucket contains raw event data from our app.
 
 ## Instructions

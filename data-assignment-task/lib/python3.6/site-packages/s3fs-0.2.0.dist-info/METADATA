@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: s3fs
+Version: 0.2.0
+Summary: Convenient Filesystem interface over S3
+Home-page: http://github.com/dask/s3fs/
+Maintainer: Martin Durant
+Maintainer-email: mdurant@continuum.io
+License: BSD
+Keywords: s3,boto
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >= 2.7, != 3.0.*, != 3.1.*, != 3.2.*, != 3.3.*
+Requires-Dist: botocore
+Requires-Dist: boto3
+Requires-Dist: six
+
+s3fs
+====
+
+|Build Status| |Doc Status|
+
+S3FS builds on boto3_ to provide a convenient Python filesystem interface for S3.
+
+View the documentation_ for s3fs.
+
+.. _documentation: http://s3fs.readthedocs.io/en/latest/
+.. _boto3: https://boto3.readthedocs.io/en/latest/
+
+.. |Build Status| image:: https://travis-ci.org/dask/s3fs.svg?branch=master
+    :target: https://travis-ci.org/dask/s3fs
+    :alt: Build Status
+.. |Doc Status| image:: http://readthedocs.io/projects/s3fs/badge/?version=latest
+    :target: http://s3fs.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+

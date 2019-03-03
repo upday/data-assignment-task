@@ -1,7 +1,7 @@
+import os
+
 import psycopg2
 from psycopg2 import pool
-import os
-import logging
 
 db_host = os.getenv("DB_HOST", "127.0.0.1")
 db_port = os.getenv("DB_PORT", 5432)

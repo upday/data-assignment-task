@@ -20,6 +20,15 @@ The source code of the application is placed inside `etl` folder .
 Unit tests can be run using `python -m unittest discover test` from the root directory of the project with `virtualenv` activated
 this shall run all the tests inside the `test/` folder
 
+```
+(data-assignment-task) soma@soma-VirtualBox:~/ssa/2/data-assignment-task$ python -m unittest discover  test
+....
+----------------------------------------------------------------------
+Ran 4 tests in 10.386s
+
+OK
+```
+
 ## Run
 
 The application can be run with  `docker-compose up --build` to enforce building the etl container
@@ -33,4 +42,26 @@ This will load the data into the Postgres DB into 2 tables USER_PERFORMANCE and 
   * daily average session length
   * daily click through rate
  
-  
+```
+(data-assignment-task) soma@soma-VirtualBox:~/ssa/2/data-assignment-task$ docker-compose up --build
+Building etl
+.....
+.....
+Successfully built 37d8eccae117
+Successfully tagged data-assignment-task_etl:latest
+Creating data-assignment-task_postgres_1 ... done
+Creating data-assignment-task_etl_1      ... done
+Attaching to data-assignment-task_postgres_1, data-assignment-task_etl_1
+postgres_1  | The files belonging to this database system will be owned by user "postgres".
+postgres_1  | This user must also own the server process.
+.....
+.....
+postgres_1  | 2019-03-03 15:39:10.084 UTC [1] LOG:  database system is ready to accept connections
+etl_1       | Connection pool created successfully
+etl_1       | CREATE TABLE IF NOT EXISTS USER_PERFORMANCE(..) executed successfully
+etl_1       | CREATE TABLE IF NOT EXISTS ARTICLE_PERFORMANCE(..) executed successfully
+etl_1       | Data loaded successfully into ARTICLE_PERFORMANCE table
+etl_1       | Data loaded successfully into USER_PERFORMANCE table
+data-assignment-task_etl_1 exited with code 0
+
+```

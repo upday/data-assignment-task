@@ -1,5 +1,4 @@
-from etl.DBUtil import Connectionpool
-import logging
+from etl.db_util import Connectionpool
 
 
 def create_load_tables():

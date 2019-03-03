@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from unittest import TestCase
 
-from etl.Transformer import Transformer
+from etl.transformer import Transformer
 
 
 class TestTransform(TestCase):
@@ -36,9 +36,6 @@ class TestTransform(TestCase):
         transformer = Transformer(self.df)
         result = transformer.transform()
         Transformer.PersistHelper(df=result, file_loc='test/results').save_df_to_filesystem()
-        self.assertTrue(os.path.isfile('test/results/dim_user.csv'))
-        self.assertTrue(os.path.isfile('test/results/dim_event.csv'))
-        self.assertTrue(os.path.isfile('test/results/dim_article.csv'))
         self.assertTrue(os.path.isfile('test/results/fact_article_access.csv'))
         self.assertTrue(os.path.isfile('test/results/fact_user_activity.csv'))
 

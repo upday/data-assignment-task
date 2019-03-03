@@ -1,5 +1,4 @@
-import logging
-from etl.DBUtil import Connectionpool
+from etl.db_util import Connectionpool
 
 
 class Loader:

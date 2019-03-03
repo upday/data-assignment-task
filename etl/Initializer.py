@@ -13,11 +13,11 @@ def create_load_tables():
 
         cursor.execute("""
                         CREATE TABLE IF NOT EXISTS USER_PERFORMANCE(
-                            USER_ID text,
+                            USER_ID VARCHAR(50),
                             TIMESTAMP timestamp,
-                            SESSION_ID text,
-                            EVENT_NAME text,
-                            browser text,
+                            SESSION_ID VARCHAR(50),
+                            EVENT_NAME VARCHAR(30),
+                            browser VARCHAR(10),
                             UPDATE_TIMESTAMP timestamp default current_timestamp
                         )
                     """)
@@ -26,12 +26,12 @@ def create_load_tables():
 
         cursor.execute("""
                         CREATE TABLE IF NOT EXISTS ARTICLE_PERFORMANCE(
-                            id text,
-                            EVENT_NAME text,
+                            id VARCHAR(50),
+                            EVENT_NAME VARCHAR(30),
                             TIMESTAMP timestamp,
-                            category text,
-                            sourceName text,
-                            publishTime text,
+                            category VARCHAR(30),
+                            sourceName VARCHAR(50),
+                            publishTime VARCHAR(20),
                             url text,
                             UPDATE_TIMESTAMP timestamp default current_timestamp,
                             DATE date
@@ -47,3 +47,4 @@ def create_load_tables():
     except Exception as error:
         print("Error while creating tables in DB ", error)
         raise error
+

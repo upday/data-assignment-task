@@ -30,7 +30,7 @@ class Transformer:
             :return: pandas.DataFrame
         """
         return df[((df.EVENT_NAME == 'article_viewed')
-                   | (df.EVENT_NAME == ' top_news_card_viewed')
+                   | (df.EVENT_NAME == 'top_news_card_viewed')
                    | (df.EVENT_NAME == 'my_news_card_viewed')) & df.ATTRIBUTES.apply(
             lambda x: isinstance(x, str))]
 

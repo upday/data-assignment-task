@@ -47,6 +47,3 @@ The task will be evaluated based on:
 * Architecture of the solution
 * Data modeling
 * Tests (full coverage is not required, you should mainly test the critical parts of the code)
-
-## Bonus
-Include a picture that visualizes the CTR per article category over the 3 days. Up to you which kind of visualization to use.

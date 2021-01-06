@@ -15,7 +15,7 @@ def ensure_data_dir(directory_name):
        Args:
            directory_name: the name of the local dir where you want to place the files
        """
-    parent_dir = os.path.dirname(os.getcwd())
+    parent_dir = os.getcwd()
     data_dir = os.path.join(parent_dir, directory_name)
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)

@@ -1,5 +1,11 @@
 import psycopg2
 from time import sleep
+from lib.download_files import download_s3_folder
+
+
+BUCKET_NAME = "upday-data-assignment"
+FOLDER_NAME = "lake"
+download_s3_folder(BUCKET_NAME, FOLDER_NAME)
 
 sleep(10)
 try:

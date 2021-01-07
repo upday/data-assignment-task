@@ -2,6 +2,10 @@ import psycopg2
 import psycopg2.extras as extras
 
 class Loader:
+    """
+    This class is used to load given data frame into postgreSQL
+    tables used for loading are class constants
+    """
     ARTICLE_TABLE = "article_performance"
     USER_TABLE = "user_performance"
 

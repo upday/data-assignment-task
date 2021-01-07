@@ -1,0 +1,5 @@
+DB:
+  user: user
+  password: password
+  host: postgres
+  database: database

@@ -19,11 +19,9 @@ class Loader:
     def load_into_user_table(self, df, cursor, connection):
         user_df = df[['USER_ID', 'EVENT_NAME', 'MD5(SESSION_ID)', 'TIMESTAMP', 'DATE', 'UPDATE_TIMESTAMP']]
         df_columns = list(user_df)
-        # create (col1,col2,...)
         columns = ",".join(df_columns)
-        # create VALUES('%s', '%s",...) one '%s' per column
+        # create one '%s' per column
         values = "VALUES({})".format(",".join(["%s" for _ in df_columns]))
-        # create INSERT INTO table (columns) VALUES('%s',...)
         query = "INSERT INTO {} ({}) {}".format(self.USER_TABLE, columns, values)
         extras.execute_batch(cursor, query, user_df.values)
         connection.commit()

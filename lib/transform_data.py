@@ -1,22 +1,26 @@
 import ast
+import datetime
 import os
 import pandas as pd
 from os.path import isfile, join
+from dateutil.parser import parse
 
 
-class Tranformator:
+class Transformator:
     """
-    Class reading data from the files, transforming and saving into
+    Class responsible for reading data from the source files and converting into necessary format
     """
     DATA_PATH = "data"
     ARTICLE_READ_EVENTS = ["article_viewed"]
     ARTICLE_VIEWED_EVENTS = ["top_news_card_viewed", "my_news_card_viewed"]
-    COLUMN_NAMES = ['TIMESTAMP', 'MD5(USER_ID)', 'EVENT_NAME', 'MD5(SESSION_ID)', 'article_id']
+    COLUMN_NAMES = ['TIMESTAMP', 'MD5(USER_ID)', 'EVENT_NAME', 'MD5(SESSION_ID)', 'ARTICLE_ID', 'DATE', 'UPDATE_TIMESTAMP']
 
-    def tranform_all_folder_files(self, folder):
+
+    def tranform_all_folder_files(self, folder=DATA_PATH):
         """
+        Iterate over all files in a given (data) folder and return processed collective data frame
         :param folder: folder where all data files are placed
-        :return: final_df - data frame of all articles in the data folder
+        :return: final_df - data frame of all csv's in the data folder
         """
         file_names = [f for f in os.listdir(folder) if isfile(join(folder, f))]
         final_df = pd.DataFrame(columns = self.COLUMN_NAMES)
@@ -26,7 +30,7 @@ class Tranformator:
         return final_df
 
 
-    def extract_id_from_attributes(self, attributes, value):
+    def __extract_id_from_attributes(self, attributes, value):
         """
         :param value: value of attribute to be extracted
         :return:
@@ -48,10 +52,8 @@ class Tranformator:
         # Filter relevant events
         all_relevant_articles = self.ARTICLE_READ_EVENTS + self.ARTICLE_VIEWED_EVENTS
         data_df = data_df.loc[data_df['EVENT_NAME'].isin(all_relevant_articles)]
-        data_df['article_id'] = data_df['ATTRIBUTES'].apply(self.extract_id_from_attributes, args=('id',))
+        data_df['ARTICLE_ID'] = data_df['ATTRIBUTES'].apply(self.__extract_id_from_attributes, args=('id',))
+        data_df['DATE'] = data_df['TIMESTAMP'].apply(lambda x: parse(x).date())
+        data_df['UPDATE_TIMESTAMP'] = datetime.datetime.now()
         data_df = data_df[self.COLUMN_NAMES]
         return data_df
-
-
-tr = Tranformator()
-tr.tranform_all_folder_files(tr.DATA_PATH)

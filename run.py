@@ -25,7 +25,7 @@ params = {
 
 if __name__ == '__main__':
     sleep(10)
-    # extract data from s3 buckry
+    # extract data from s3 bucket and load into local data dir
     download_s3_folder(BUCKET_NAME, FOLDER_NAME)
 
     # execute DDL's in postresSQL

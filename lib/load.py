@@ -24,7 +24,7 @@ class Loader:
         # create VALUES('%s', '%s",...) one '%s' per column
         values = "VALUES({})".format(",".join(["%s" for _ in df_columns]))
         # create INSERT INTO table (columns) VALUES('%s',...)
-        query = "INSERT INTO {} ({}) {}".format(self.ARTICLE_TABLE, columns, values)
+        query = "INSERT INTO {} ({}) {}".format(self.USER_TABLE, columns, values)
         extras.execute_batch(cursor, query, user_df.values)
         connection.commit()
 
@@ -35,7 +35,7 @@ class Loader:
                 cursor = connection.cursor()
                 self.load_into_article_table(data_frame, cursor, connection)
                 print("article table is now populated!! Great success :D")
-                self.load_into_articl_table(data_frame, cursor, connection)
+                self.load_into_user_table(data_frame, cursor, connection)
                 print("user table is now populated!! Great success :D")
 
         except (Exception, psycopg2.Error) as error:

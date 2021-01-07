@@ -17,7 +17,7 @@ class Loader:
 
 
     def load_into_user_table(self, df, cursor, connection):
-        user_df = df[['USER_ID', 'EVENT_NAME', 'MD5(SESSION_ID)', 'TIMESTAMP', 'DATE', 'UPDATE_TIMESTAMP']]
+        user_df = df[['USER_ID', 'EVENT_NAME', 'SESSION_ID', 'TIMESTAMP', 'DATE', 'UPDATE_TIMESTAMP']]
         df_columns = list(user_df)
         columns = ",".join(df_columns)
         # create one '%s' per column

@@ -13,7 +13,7 @@ class Transformator:
     DATA_PATH = "data"
     ARTICLE_READ_EVENTS = ["article_viewed"]
     ARTICLE_VIEWED_EVENTS = ["top_news_card_viewed", "my_news_card_viewed"]
-    COLUMN_NAMES = ['TIMESTAMP', 'MD5(USER_ID)', 'EVENT_NAME', 'MD5(SESSION_ID)', 'ARTICLE_ID', 'DATE', 'UPDATE_TIMESTAMP']
+    COLUMN_NAMES = ['TIMESTAMP', 'USER_ID', 'EVENT_NAME', 'SESSION_ID', 'ARTICLE_ID', 'DATE', 'UPDATE_TIMESTAMP']
 
 
     def tranform_all_folder_files(self, folder=DATA_PATH):
@@ -55,5 +55,7 @@ class Transformator:
         data_df['ARTICLE_ID'] = data_df['ATTRIBUTES'].apply(self.__extract_id_from_attributes, args=('id',))
         data_df['DATE'] = data_df['TIMESTAMP'].apply(lambda x: parse(x).date())
         data_df['UPDATE_TIMESTAMP'] = datetime.datetime.now()
+        data_df['USER_ID'] = data_df['MD5(USER_ID)']
+        data_df['SESSION_ID'] = data_df['MD5(SESSION_ID)']
         data_df = data_df[self.COLUMN_NAMES]
         return data_df

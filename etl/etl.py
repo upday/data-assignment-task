@@ -6,6 +6,7 @@ import psycopg2
 from botocore import UNSIGNED
 from botocore.config import Config
 import pandas as pd
+from sqlalchemy import create_engine
 
 RELEVANT_EVENTS = ['article_viewed', 'top_news_card_viewed', 'my_news_card_viewed']
 HOST = os.getenv('DB_HOST', 'postgres')
@@ -166,3 +167,29 @@ class ETL:
         # Not the most optimal way to store them, but should work for now TODO: store just reference
         self.article_performance_df = self.df[self.COLUMN_NAMES_ARTICLE]
         self.user_performance_df = self.df[self.COLUMN_NAMES_USER]
+
+    def load(self):
+        """populates defined tables in db"""
+        self.df_to_db(table='article_performance', df=self.article_performance_df)
+        self.df_to_db(table='user_performance', df=self.user_performance_df)
+        return
+
+    @staticmethod
+    def df_to_db(table, df):
+        """
+        Writes dataframe into postgres table
+
+        Args:
+            table: table name to write into
+            df: dataframe to use as source data
+
+        Returns:
+            None
+        """
+        print(f"Writing data to {table}")
+        engine = create_engine(f'postgresql://{USER}:{PASSWORD}@{HOST}:5432/{DATABASE}')
+
+        df.to_sql(table, con=engine, if_exists='append', index=False)
+
+        print("Done... Total rows: ")
+        print(engine.execute(f"SELECT count(*) FROM {table}").fetchall())

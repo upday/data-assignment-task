@@ -193,3 +193,8 @@ class ETL:
 
         print("Done... Total rows: ")
         print(engine.execute(f"SELECT count(*) FROM {table}").fetchall())
+
+    @staticmethod
+    def clean_up(file_path):
+        """Remove file from path"""
+        os.remove(file_path)

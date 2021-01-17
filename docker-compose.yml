@@ -6,6 +6,11 @@ services:
          - postgres
       links:
          - postgres
+      environment:
+        POSTGRES_USER: user
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: database
+        DB_HOST: postgres
    postgres:
       image: postgres:11
       restart: always

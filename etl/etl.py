@@ -151,3 +151,18 @@ class ETL:
             return json.loads(data)[key]
         except Exception as e:
             print(e)
+
+    def transform(self):
+        """Run basic transformations on dataframe"""
+
+        self.df.rename(columns={'ATTRIBUTES': "ARTICLE_ID",
+                                'MD5(USER_ID)': 'USER_ID',
+                                'MD5(SESSION_ID)': 'SESSION_ID'},
+                       inplace=True)
+
+        self.df = self.df.loc[self.df['EVENT_NAME'].isin(RELEVANT_EVENTS)]
+        self.df.columns = self.df.columns.str.lower()
+
+        # Not the most optimal way to store them, but should work for now TODO: store just reference
+        self.article_performance_df = self.df[self.COLUMN_NAMES_ARTICLE]
+        self.user_performance_df = self.df[self.COLUMN_NAMES_USER]

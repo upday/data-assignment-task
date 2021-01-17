@@ -1,6 +1,7 @@
 import os
 
 import boto3
+import psycopg2
 from botocore import UNSIGNED
 from botocore.config import Config
 import pandas as pd
@@ -52,3 +53,45 @@ class ETL:
                 list_of_files.append(my_bucket_object.key)
 
         return list_of_files
+
+    def initialize(self):
+        """Create database tables in postgres db
+
+        Tables are:
+            * article_performance
+            * user_performance
+        """
+        self.execute_on_db(file='etl/create_article_performance.sql')
+        self.execute_on_db(file='etl/create_user_performance.sql')
+
+    @staticmethod
+    def execute_on_db(query: str = None, file: str = None):
+        """
+        Execute passed query on database. Query can be passed as string or file(path)
+        At least one of them should be passed to make it work.
+
+        Args:
+            query: Query to execute
+            file: SQL file to execute
+
+        Returns:
+            None
+        """
+        if query is None and file is None:
+            print("Query or SQL file should be provided")
+            raise Exception
+
+        print("Starting table init")
+        with psycopg2.connect(host=HOST,
+                              database=DATABASE,
+                              user=USER,
+                              password=PASSWORD) as connection:
+            try:
+                cursor = connection.cursor()
+                sql = query if query else open(file, "r").read()
+                cursor.execute(sql)
+                connection.commit()
+                print("SUCCESS")
+            except Exception as error:
+                connection.rollback()
+                print(error)

@@ -43,3 +43,12 @@ class ETL:
             self.load()
             self.clean_up(local_path)
 
+    @staticmethod
+    def get_list_of_files_from_s3():
+        """Get available object name from S3 bucket for further processing"""
+        list_of_files = []
+        for my_bucket_object in upday_bucket.objects.filter(Prefix='lake/'):
+            if str(my_bucket_object.key).endswith('.tsv'):
+                list_of_files.append(my_bucket_object.key)
+
+        return list_of_files

@@ -1,3 +1,4 @@
+import json
 import os
 
 import boto3
@@ -95,3 +96,58 @@ class ETL:
             except Exception as error:
                 connection.rollback()
                 print(error)
+
+    def extract(self, file_path: str):
+        """
+        Download data from specified file_path and reads into pandas dataframe
+
+        Args:
+            file_path: url to download data
+
+        Returns:
+            local_path(str): path where file is stored locally
+        """
+        local_path = self.download_file(file_path)
+        self.df = pd.read_csv(local_path,
+                              sep='\t',
+                              converters={
+                                  'ATTRIBUTES': self.parse_column
+                              })
+
+        return local_path
+
+    @staticmethod
+    def download_file(file_path):
+        """
+        Download object from S3 and store locally
+
+        Args:
+            file_path: S3 object path/name
+
+        Returns:
+            local_path(str): path where file is stored locally
+        """
+        local_path = file_path.split('lake/')[1]
+        if local_path not in os.listdir():
+            upday_bucket.download_file(file_path, local_path)
+
+        return local_path
+
+    @staticmethod
+    def parse_column(data, key: str = 'id'):
+        """
+        This (hacky) helper function gets string representation of json,
+        transforms into dict and parses only specified column
+
+        If it fails to convert string into dict, function will return None
+
+        Args:
+            data: string representation of json
+            key: key to parse from dictionary
+        Returns:
+            dict with only value of key
+        """
+        try:
+            return json.loads(data)[key]
+        except Exception as e:
+            print(e)

@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS user_performance
+(
+    USER_ID VARCHAR(40),
+    EVENT_NAME VARCHAR(40),
+    SESSION_ID VARCHAR(40),
+    TIMESTAMP timestamp
+)

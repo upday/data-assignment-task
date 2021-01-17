@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS article_performance
+(
+    ARTICLE_ID VARCHAR(40),
+    EVENT_NAME VARCHAR(40),
+    TIMESTAMP  timestamp
+)

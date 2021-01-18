@@ -1,0 +1,17 @@
+{
+    "DB" : {
+        "user" : "user",
+        "password" : "password",
+        "host" : "postgres",
+        "database" : "database"
+    },
+    "attribute" : "id",
+    "bucket" : "upday-data-assignment",
+    "drive" : "lake",
+    "data_directory" : "data",
+    "article_table" : "article_performance",
+    "user_table" : "user_performance",
+    "events_filter" : ["article_viewed", "top_news_card_viewed", "my_news_card_viewed"],
+    "article_columns" : ["ARTICLE_ID", "EVENT_NAME", "TIMESTAMP", "DATE"],
+    "user_columns" : ["USER_ID", "EVENT_NAME", "SESSION_ID", "TIMESTAMP", "DATE"]
+}

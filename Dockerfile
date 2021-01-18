@@ -9,5 +9,6 @@ WORKDIR /app
 
 # Install python packages
 RUN pip install --no-cache-dir -r /app/requirements.txt
-
+CMD echo "I--------I"
+CMD sh
 CMD ["python", "./run.py"]

@@ -19,7 +19,6 @@ It is considered that-
 
 
 # Populate Database using:
-docker-compose up
      docker-compose up
 
 # Testing

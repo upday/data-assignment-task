@@ -25,13 +25,13 @@ It is considered that-
 A python test file is created in parallel to `run.py`, which holds testing functionaly for transformed data. 
 It includes checking of columns, null records & length check
 
-# create a virtual using
+# Create a virtual using
      python3 -m venv up_de_test
 
-# activate venv using:
+# Activate venv using:
     . up_de_test/bin/activate
 
-# install dependencies using:
+# Install dependencies using:
     pip install -r reauirements.txt
 
 # Run tests:

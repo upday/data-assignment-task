@@ -10,7 +10,7 @@ It is considered that-
 - Puiblish these to tables created
 - If same date data is available in 2nd run it will create duplicate data
 
-# Program Flow:
+# Pipeline Flow:
 1. Creating Table from pipeline/schema.py
 1. Downloading file from pipeline/extraction.py
 1. Transforming data by pipeline/transformation.py

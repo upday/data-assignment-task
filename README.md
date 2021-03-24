@@ -47,3 +47,21 @@ The task will be evaluated based on:
 * Architecture of the solution
 * Data modeling
 * Tests (full coverage is not required, you should mainly test the critical parts of the code)
+
+
+## Installations
+```
+pip install boto3  
+pip install pandas
+```
+
+## Notes
+1.) Created FileHandler assignment.log file to store the logging information of the task.    
+2.) Created jobfeed.ini configuration file to store AWS S3 bucket path and file names.  
+3.) extracted_data() method is used to extract data from AWS S3.  
+4.) load_dataframe() method is used to load the extracted data to postgres table.  
+5.) sql files are stored in sql folder  
+6.) Extraction and Loading operations are stored in dwh folder
+6.) Created two databases :- staging_db and operational_db.  
+7.) Two tables of operational_db:-   
+I.)article_performance II.)user_performance are provided to BI team.
